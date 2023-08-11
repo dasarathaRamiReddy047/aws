@@ -1,0 +1,71 @@
+<div class="fuild-container bg-color">
+  <div class="col-12 d-flex flex-row justify-content-between">
+    <div class="col-4">
+      <h1 class="lead">Employee PayRoll Management</h1>
+    </div>
+    <div class="col-4">
+      <button
+        type="button"
+        class="custom-toggle-button text-white"
+        (click)="openCustomBackdropClass(content)"
+      >
+        Apps
+      </button>
+    </div>
+    <div>
+      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+        <button
+          type="button"
+          class="btn btn-outline-primary me-2 profileCon"
+          id="dropdownManual"
+          ngbDropdownAnchor
+          (click)="Profilelogo()"
+          (focus)="myDrop.open()"
+        >
+          <img
+            class="profile"
+            src="https://i.ibb.co/1qrmnWJ/Screenshot-2023-08-09-093513.png"
+            alt="Screenshot-2023-08-09-093513"
+          />
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownManual">
+          <h1 class="lead" ngbDropdownItem *ngIf="isLogin">
+            Logged in as {{ loginPersonName }}
+          </h1>
+          <button ngbDropdownItem routerLink="/profile">Profile</button>
+          <button ngbDropdownItem>Logout</button>
+          <button ngbDropdownItem routerLink="/login">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-header">
+    <h4 class="offcanvas-title lead">Employee PayRoll Management</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="offcanvas.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="d-flex flex-column justify-content-center">
+      <button class="m-2 button" routerLink="">Home</button>
+      <button class="m-2 button" routerLink="/admin">admin</button>
+      <button class="m-2 button" routerLink="/salary">Salary</button>
+      <button class="m-2 button" routerLink="/adminSalary">AdminSalary</button>
+    </div>
+    <div class="text-end">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="offcanvas.close('Close click')"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</ng-template>

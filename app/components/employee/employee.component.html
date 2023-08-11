@@ -1,0 +1,198 @@
+<div class="d-flex flex-row justify-content-between m-4">
+  <button type="button" class="btn btn-info" (click)="add()">
+    Add Employee
+  </button>
+
+  <button type="button" class="btn btn-info" routerLink="/admin">back</button>
+</div>
+
+<div class="container mt-4" *ngIf="!isEmployeeAdd">
+  <div class="mb-4">
+    <h1 class="lead">Employees Table</h1>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Employee Id</td>
+        <td>Employee Name</td>
+        <td>Gender</td>
+        <td>Mail Id</td>
+        <td>Category</td>
+        <td>Role</td>
+        <td>Action</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employeeList">
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.gender }}</td>
+        <td>{{ employee.mailId }}</td>
+        <td>{{ employee.category }}</td>
+        <td>{{ employee.role }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-info m-1"
+            (click)="editEmplyee(employee.id)"
+          >
+            Edit
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-info m-1"
+            (click)="deleteEmployee(employee.id)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Add Employee-->
+<div class="container" *ngIf="isEmployeeAdd">
+  <h2>Create Employee</h2>
+  <form class="form" (ngSubmit)="addEmployee()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Enter name"
+        [(ngModel)]="employee.name"
+        name="name"
+        #name="ngModel"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role:</label>
+      <select
+        class="form-control"
+        [(ngModel)]="employee.role"
+        name="role"
+        #role="ngModel"
+      >
+        <option value="Employee">Employee</option>
+        <option value="Admin">Admin</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select
+        class="form-control"
+        [(ngModel)]="employee.gender"
+        name="gender"
+        #gender="ngModel"
+      >
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select
+        class="form-control"
+        [(ngModel)]="employee.category"
+        name="category"
+        #category="ngModel"
+      >
+        <option value="Designer">Designer</option>
+        <option value="Developer">Developer</option>
+        <option value="Tester">Tester</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="mailId">Mail Id:</label>
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Enter Mail Id"
+        [(ngModel)]="employee.mailId"
+        name="mailId"
+        #mailId="ngModel"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Employee</button>
+  </form>
+</div>
+
+<div class="container" *ngIf="isupdateEmployee">
+  <h2>Update Employee</h2>
+  <form class="form" (ngSubmit)="updateEmployee()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Enter name"
+        [(ngModel)]="employee.name"
+        name="name"
+        #name="ngModel"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role:</label>
+      <select
+        class="form-control"
+        [(ngModel)]="employee.role"
+        name="role"
+        #role="ngModel"
+      >
+        <option value="employee">Employee</option>
+        <option value="admin">Admin</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select
+        class="form-control"
+        [(ngModel)]="employee.gender"
+        name="gender"
+        #gender="ngModel"
+      >
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select
+        class="form-control"
+        [(ngModel)]="employee.category"
+        name="category"
+        #category="ngModel"
+      >
+        <option value="Designer">Designer</option>
+        <option value="Developer">Developer</option>
+        <option value="Tester">Tester</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="mailId">Mail Id:</label>
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Enter Mail Id"
+        [(ngModel)]="employee.mailId"
+        name="mailId"
+        #mailId="ngModel"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Edit Employee</button>
+  </form>
+</div>
